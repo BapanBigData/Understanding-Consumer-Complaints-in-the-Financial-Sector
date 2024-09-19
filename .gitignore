@@ -129,7 +129,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-complaints-2024-09-17_17_59.csv
 
 # Spyder project settings
 .spyderproject
