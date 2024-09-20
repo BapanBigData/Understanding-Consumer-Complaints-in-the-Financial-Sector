@@ -5,8 +5,16 @@ from pyspark.sql import Row
 # Print PySpark version to check if it's correctly installed
 print("PySpark Version:", pyspark.__version__)
 
-# Create a Spark session to test Spark functionality
-spark = SparkSession.builder.appName("Test").getOrCreate()
+# # Create a Spark session to test Spark functionality
+# spark = SparkSession.builder.appName("Test").getOrCreate()
+
+spark = SparkSession.builder \
+        .appName("Test") \
+        .config("spark.executor.memory", "2g") \
+        .config("spark.driver.memory", "1g") \
+        .config("spark.master", "local[*]") \
+        .getOrCreate()
+
 
 # Check if the Spark session was created successfully
 print("Spark Session created successfully!")
@@ -46,3 +54,21 @@ df.show(20)
 spark.stop()
 
 print("Connection closed!!")
+
+import os
+from dotenv import load_dotenv # type: ignore
+
+# loading all the env variables from .env file
+load_dotenv()
+
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+MONGO_DB_URL = os.getenv("MONGO_DB_URL")
+S3_MODEL_DIR_KEY = os.getenv("S3_MODEL_DIR_KEY")
+S3_MODEL_BUCKET_NAME = os.getenv("S3_MODEL_BUCKET_NAME")
+MODEL_SAVED_DIR = os.getenv("MODEL_SAVED_DIR")
+
+print(MODEL_SAVED_DIR)
+
+print("All env variables are working!!")
+
