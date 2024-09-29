@@ -44,7 +44,7 @@ class DataValidation(FinanceDataSchema):
         try:
             dataframe: DataFrame = spark_session.read.parquet(
                 self.data_ingestion_artifact.feature_store_file_path
-            ).limit(10000)
+            )   # .limit(10000)
             
             logger.info(f"Data frame is created using file: {self.data_ingestion_artifact.feature_store_file_path}")
             logger.info(f"Number of row: {dataframe.count()} and column: {len(dataframe.columns)}")
@@ -58,7 +58,7 @@ class DataValidation(FinanceDataSchema):
 
 
     @staticmethod
-    def get_missing_report(dataframe: DataFrame, ) -> Dict[str, MissingReport]:
+    def get_missing_report(dataframe: DataFrame) -> Dict[str, MissingReport]:
         try:
             missing_report: Dict[str:MissingReport] = dict()
             logger.info(f"Preparing missing reports for each column")
@@ -81,7 +81,7 @@ class DataValidation(FinanceDataSchema):
             raise FinanceException(e, sys)
 
 
-    def get_unwanted_and_high_missing_value_columns(self, dataframe: DataFrame, threshold: float = 0.2) -> List[str]:
+    def get_unwanted_and_high_missing_value_columns(self, dataframe: DataFrame, threshold: float=0.2) -> List[str]:
         try:
             missing_report: Dict[str, MissingReport] = self.get_missing_report(dataframe=dataframe)
 
