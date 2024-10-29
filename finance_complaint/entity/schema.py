@@ -137,7 +137,8 @@ class FinanceDataSchema:
     def unwanted_columns(self) -> List[str]:
         features = [
             self.col_complaint_id,
-            self.col_sub_product, self.col_complaint_what_happened]
+            self.col_sub_product, self.col_complaint_what_happened
+            ]
 
         return features
 

@@ -45,9 +45,7 @@ class DataTransformation():
     def get_data_transformation_pipeline(self, ) -> Pipeline:
         try:
 
-            stages = [
-
-            ]
+            stages = []
 
             # numerical column transformation
 
@@ -149,7 +147,7 @@ class DataTransformation():
 
     def initiate_data_transformation(self) -> DataTransformationArtifact:
         try:
-            logger.info(f">>>>>>>>>>>Started data transformation <<<<<<<<<<<<<<<")
+            logger.info(f">>>>>>>>>>> Started data transformation <<<<<<<<<<<<<<<")
             dataframe: DataFrame = self.read_data()
             # dataframe = self.get_balanced_shuffled_dataframe(dataframe=dataframe)
             logger.info(f"Number of row: [{dataframe.count()}] and column: [{len(dataframe.columns)}]")
