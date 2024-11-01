@@ -53,6 +53,7 @@ class DataTransformation():
             derived_feature = DerivedFeatureGenerator(inputCols=self.schema.derived_input_features,
                                                         outputCols=self.schema.derived_output_features)
             stages.append(derived_feature)
+            
             # creating imputer to fill null values
             imputer = Imputer(inputCols=self.schema.numerical_columns,
                                 outputCols=self.schema.im_numerical_columns)
